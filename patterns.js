@@ -169,22 +169,18 @@ function areDimensionsValid(dimensions) {
 }
 
 function getPattern(style, dimensions) {
-  const patterns = [
-    ["filled-rectangle", filledRectangle],
-    ["hollow-rectangle", hollowRectangle],
-    ["alternating-rectangle", alternatingRectangle],
-    ["spaced-alternating-rectangle", spacedAlternatingRectangle],
-    ["triangle", triangle],
-    ["right-aligned-triangle", rightAlignedTriangle],
-    ["diamond", diamond],
-    ["hollow-diamond", hollowDiamond],
-  ];
+  const patterns = {
+    "filled-rectangle": filledRectangle,
+    "hollow-rectangle": hollowRectangle,
+    "alternating-rectangle": alternatingRectangle,
+    "spaced-alternating-rectangle": spacedAlternatingRectangle,
+    triangle: triangle,
+    "right-aligned-triangle": rightAlignedTriangle,
+    diamond: diamond,
+    "hollow-diamond": hollowDiamond,
+  };
 
-  const [_, functionReference] = patterns.find(
-    ([styleName]) => styleName === style
-  );
-
-  return functionReference(dimensions);
+  return patterns[style](dimensions);
 }
 
 function removeAll(array, culprit) {
