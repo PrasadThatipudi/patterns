@@ -180,12 +180,11 @@ function getPattern(style, dimensions) {
     ["hollow-diamond", hollowDiamond],
   ];
 
-  for (const [styleName, functionName] of patterns) {
-    if (styleName === style) {
-      const shape = functionName(dimensions);
-      return shape;
-    }
-  }
+  const [_, functionReference] = patterns.find(
+    ([styleName]) => styleName === style
+  );
+
+  return functionReference(dimensions);
 }
 
 function removeAll(array, culprit) {
@@ -244,13 +243,15 @@ function generatePattern(style1, dimensions, style2) {
     return "";
   }
 
-  const patterns = [];
-  patterns.push(getPattern(style1, dimensions));
-  patterns.push(getPattern(style2, dimensions));
+  return getPattern(style1, dimensions).join("\n");
 
-  return combinePatterns(removeAll(patterns, undefined), dimensions[0]).join(
-    "\n"
-  );
+  // const patterns = [];
+  // patterns.push(getPattern(style1, dimensions));
+  // patterns.push(getPattern(style2, dimensions));
+
+  // return combinePatterns(removeAll(patterns, undefined), dimensions[0]).join(
+  //   "\n"
+  // );
 }
 
 // ------------------ Testing Fragment ---------------------
