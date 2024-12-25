@@ -63,6 +63,8 @@ function middlePartOfRectangle(width, height, styleType, chars) {
   return rectangle;
 }
 
+const rectanglePattern = (width, height) => Array(height).fill(width);
+
 function rectangle(width, height, styleType, chars) {
   if (height === 1) {
     return [filledLine(width, chars[0])];
@@ -80,8 +82,10 @@ function rectangle(width, height, styleType, chars) {
   return rectangleShape;
 }
 
+const stars = (times) => filledLine(times, "*");
+
 const filledRectangle = function ([width, height]) {
-  return rectangle(width, height, filledLine, ["*"]);
+  return rectanglePattern(width, height).map(stars);
 };
 
 const hollowRectangle = function ([width, height]) {
