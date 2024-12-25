@@ -20,10 +20,6 @@ function reverse(array) {
   return reversedArray;
 }
 
-function isNegative(number) {
-  return number < 0;
-}
-
 function getRange(from, to, step) {
   const numbers = [];
 
@@ -41,7 +37,7 @@ function range(from, to, step) {
 
   const numbers = getRange(from, to, Math.abs(step));
 
-  return isNegative(step) ? reverse(numbers) : numbers;
+  return isPositive(step) ? reverse(numbers) : numbers;
 }
 
 function hollowLine(width, char) {
@@ -159,14 +155,9 @@ function hollowDiamond([height]) {
   return makeDiamond(nearestOdd(height), "*", hollowLine);
 }
 
-function areDimensionsValid(dimensions) {
-  for (const dimension of dimensions) {
-    if (dimension < 1) {
-      return false;
-    }
-  }
-  return true;
-}
+const isPositive = (number) => number > 0;
+
+const isAnyDimensionNegative = (dimensions) => dimensions.every(isPositive);
 
 function getPattern(style, dimensions) {
   const patterns = {
@@ -235,7 +226,7 @@ function combinePatterns(patterns, width) {
 }
 
 function generatePattern(style1, dimensions, style2) {
-  if (!areDimensionsValid(dimensions)) {
+  if (!isAnyDimensionNegative(dimensions)) {
     return "";
   }
 
