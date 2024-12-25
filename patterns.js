@@ -186,15 +186,7 @@ function removeAll(array, culprit) {
   return undroppedElements;
 }
 
-function arrayCopy(array) {
-  const copiedArray = [];
-
-  for (const element of array) {
-    copiedArray.push(element);
-  }
-
-  return copiedArray;
-}
+const arrayCopy = (array) => [...array];
 
 function combineTwoPatterns(pattern1, pattern2, width) {
   if (pattern1.length !== pattern2.length) {
